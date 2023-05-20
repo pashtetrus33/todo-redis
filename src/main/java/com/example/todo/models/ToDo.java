@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
@@ -14,11 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "ToDo")
 public class ToDo {
-
-    @NotNull
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @NotNull
