@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
 import java.net.URI;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class ToDoController {
     @PatchMapping("/todo/{id}")
     public ResponseEntity<ToDo> setCompleted(@PathVariable String id) {
         Optional<ToDo> toDo = toDoRepository.findById(id);
-        if (toDo.isEmpty())
+        if(!toDo.isPresent())
             return ResponseEntity.notFound().build();
         ToDo result = toDo.get();
         result.setCompleted(true);
